@@ -1,0 +1,112 @@
+<html>
+<head>
+    <title>Assignment 2</title>
+	<meta name="description" content="Create a page on a story or topic of your choice, using JavaScript to ask questions and then writing content to the web page in response to the answers. " />
+	<meta name="keywords" content="'Fortune Teller" />
+    <script src= "script.js"></script><!-- assign values to the arrays-->
+</head>
+<body>
+<h1>The Fortune Teller</h1>
+
+<!-- The necessary introductions -->
+<script>
+    // get users name
+    var yourName = prompt("Please, tell me your name.", "Master");
+    if (yourName === null){
+        yourName = "Master";
+    }
+     alert("You are most welcome, " + yourName);
+</script>
+
+<p>I am so happy to have you join me in a game of origami fortune telling. </p>
+<p>The colors are Red, Green, Blue, and Yellow.</p>
+<p>The numbers are 1 though 8.</p>
+
+<h2>Let's Play!</h2>
+<img src="http://www.origami-fun.com/images/fortune-teller_L.gif" Alt= "Picture of Origami Fortune Teller"></img>
+
+<!--Play the game-->
+<h3>
+<script>
+    var numChoice = 0;
+    var colorChoice = prompt("Please choose a color (Red, Green, Blue, or Yellow):");
+    var yourFortune = "";
+    
+    if (colorChoice == null) {
+        colorChoice = colors [Math.floor(Math.random()*4)];
+        alert("I am so pleased that you allow me to choose the color for you, " + yourName + ". I have choosen " + colorChoice + ".");
+    }
+    
+    switch (colorChoice.toLowerCase()){
+        case "red":
+            document.write("R");
+            document.write("E");
+            document.write("D");
+            document.write("<BR />");
+            numChoice = prompt("Very good " + yourName + ". Now choose one of the following numbers: 1, 2 5, or 6");
+            if (numChoice =="" || numChoice === null || isNaN(numChoice) || numChoice <1 || numChoice >8){ // not a number or not in range then make it random
+                numChoice = Math.floor(Math.random()*8)+1; 
+            }
+            document.write("Your Fortune is: </h3>");
+            document.write("<p>" + fortunes[numChoice-1] + "</p>");
+            break;
+        case "green":
+            document.write("G");
+            document.write("R");
+            document.write("E");
+            document.write("E");
+            document.write("N");
+            document.write("<BR />");
+            numChoice = prompt("Very good " + yourName + ". Now choose one of the following numbers: 3, 4, 7, or 8");
+            if (numChoice =="" || numChoice === null || isNaN(numChoice) || numChoice <1 || numChoice >8){ // not a number or not in range then make it random
+                numChoice = Math.floor(Math.random()*8)+1; 
+            }
+            document.write("Your Fortune is: </h3>");
+            document.write("<p>" + fortunes[numChoice-1] + "</p>");
+            
+            break;
+        case "blue":
+            document.write("B");
+            document.write("L");
+            document.write("U");
+            document.write("E");
+            document.write("<BR />");
+            numChoice = prompt("Very good " + yourName + ". Now choose one of the following numbers: 1, 2 5, or 6");
+            if (numChoice =="" || numChoice === null || isNaN(numChoice) || numChoice <1 || numChoice >8){ // not a number or not in range then make it random
+                numChoice = Math.floor(Math.random()*8)+1; 
+            }
+            document.write("Your Fortune is: </h3>");
+            document.write("<p>" + fortunes[numChoice-1] + "</p>");
+            break;
+        case "yellow":
+            document.write("Y");
+            document.write("E");
+            document.write("L");
+            document.write("L");
+            document.write("O");
+            document.write("W");
+            document.write("<BR />");
+            numChoice = prompt("Very good " + yourName + ". Now choose one of the following numbers: 3, 4, 7, or 8");
+            if (numChoice =="" || numChoice === null || isNaN(numChoice) || numChoice <1 || numChoice >8){ // not a number or not in range then make it random
+                numChoice = Math.floor(Math.random()*8)+1; 
+            }
+            document.write("Your Fortune is: </h3>");
+            document.write("<p>" + fortunes[numChoice-1] + "</p>");
+            break;
+        default:
+            colorChoice = colors [Math.floor(Math.random()*4)];
+            alert("I am so sorry " + yourName + ", we are out of that color. I have choosen " + colorChoice + " as a suitable replacement. I hope that you are most happy, " + yourName);
+            document.write(colorChoice.toUpperCase()+"<BR />");
+            numChoice = prompt("Very good " + yourName + ". Now choose one of the following numbers: 3, 4, 7, or 8");
+            if (numChoice =="" || numChoice === null || isNaN(numChoice) || numChoice <1 || numChoice >8){ // not a number or not in range then make it random
+                numChoice = Math.floor(Math.random()*8)+1; 
+            }
+            document.write("Your Fortune is: </h3>");
+            document.write("<p>" + fortunes[numChoice-1] + "</p>");
+    }
+    
+
+</script>
+
+</body>
+</html>
