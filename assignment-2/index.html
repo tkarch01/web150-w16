@@ -39,73 +39,96 @@
     
     switch (colorChoice.toLowerCase()){
         case "red":
-            document.write("R");
-            document.write("E");
-            document.write("D");
+            document.write("RED");
             document.write("<BR />");
             numChoice = prompt("Very good " + yourName + ". Now choose one of the following numbers: 1, 2 5, or 6");
+
+            // deal with data that is not what I want (like null, "", or undefined)
             if (numChoice =="" || numChoice === null || isNaN(numChoice) || numChoice <1 || numChoice >8){ // not a number or not in range then make it random
                 numChoice = Math.floor(Math.random()*8)+1; 
             }
+            document.write(" " + numChoice + "<BR />");
+            
             document.write("Your Fortune is: </h3>");
             document.write("<p>" + fortunes[numChoice-1] + "</p>");
             break;
+            
         case "green":
-            document.write("G");
-            document.write("R");
-            document.write("E");
-            document.write("E");
-            document.write("N");
-            document.write("<BR />");
+            document.write("GREEN");
             numChoice = prompt("Very good " + yourName + ". Now choose one of the following numbers: 3, 4, 7, or 8");
+
+            // deal with data that is not what I want (like null, "", or undefined)
             if (numChoice =="" || numChoice === null || isNaN(numChoice) || numChoice <1 || numChoice >8){ // not a number or not in range then make it random
                 numChoice = Math.floor(Math.random()*8)+1; 
             }
+            document.write(" " + numChoice + "<BR />");
+
             document.write("Your Fortune is: </h3>");
             document.write("<p>" + fortunes[numChoice-1] + "</p>");
             
             break;
         case "blue":
-            document.write("B");
-            document.write("L");
-            document.write("U");
-            document.write("E");
-            document.write("<BR />");
+            document.write("BLUE");
             numChoice = prompt("Very good " + yourName + ". Now choose one of the following numbers: 1, 2 5, or 6");
+
+            // deal with data that is not what I want (like null, "", or undefined)
             if (numChoice =="" || numChoice === null || isNaN(numChoice) || numChoice <1 || numChoice >8){ // not a number or not in range then make it random
                 numChoice = Math.floor(Math.random()*8)+1; 
             }
+            document.write(" " + numChoice + "<BR />");
+
             document.write("Your Fortune is: </h3>");
             document.write("<p>" + fortunes[numChoice-1] + "</p>");
             break;
         case "yellow":
-            document.write("Y");
-            document.write("E");
-            document.write("L");
-            document.write("L");
-            document.write("O");
-            document.write("W");
-            document.write("<BR />");
+            document.write("YELLOW");
             numChoice = prompt("Very good " + yourName + ". Now choose one of the following numbers: 3, 4, 7, or 8");
+
+            // deal with data that is not what I want (like null, "", or undefined)
             if (numChoice =="" || numChoice === null || isNaN(numChoice) || numChoice <1 || numChoice >8){ // not a number or not in range then make it random
                 numChoice = Math.floor(Math.random()*8)+1; 
             }
+
+            document.write(" " + numChoice + "<BR />");
+
             document.write("Your Fortune is: </h3>");
             document.write("<p>" + fortunes[numChoice-1] + "</p>");
             break;
-        default:
+        default:    // user is not playing right - take over and play the game for him or her
             colorChoice = colors [Math.floor(Math.random()*4)];
             alert("I am so sorry " + yourName + ", we are out of that color. I have choosen " + colorChoice + " as a suitable replacement. I hope that you are most happy, " + yourName);
-            document.write(colorChoice.toUpperCase()+"<BR />");
+            document.write(colorChoice.toUpperCase());
+           
             numChoice = prompt("Very good " + yourName + ". Now choose one of the following numbers: 3, 4, 7, or 8");
+
+            // deal with data that is not what I want (like null, "", or undefined)
             if (numChoice =="" || numChoice === null || isNaN(numChoice) || numChoice <1 || numChoice >8){ // not a number or not in range then make it random
                 numChoice = Math.floor(Math.random()*8)+1; 
             }
+            document.write(" " + numChoice + "<BR />");
+
             document.write("Your Fortune is: </h3>");
             document.write("<p>" + fortunes[numChoice-1] + "</p>");
     }
     
+    numChoice = prompt("You did so well that I have a bonus for you. I am thinking of a number between 0 and 4. Guess what it is?");
 
+    var numInMyMind = Math.floor(Math.random()*3)+1; 
+
+     if (numChoice =="" || numChoice === null || isNaN(numChoice) || numChoice <1 || numChoice >3){ // not a number or not in range then make it random
+            alert("Nope."); // user is not playing fair - be passive agressive
+     }else{
+        if (numInMyMind == numChoice){ //user has only one chance to get it right.
+            alert("Wow, you got it right.")
+        }else if (numInMyMind > numChoice){
+            alert("Too Low.")
+        }else{
+            alert("Too High")
+        }
+     }
+
+    document.writeln("<h2>The number was " + numInMyMind + ". Thank you for playing with me. Bye</h2>")
+    
 </script>
 
 </body>
