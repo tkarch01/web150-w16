@@ -1,0 +1,16 @@
+Week 3 - True Crime
+
+Submit Assignment
+Due Tuesday by 11:59pm  Points 12  Submitting a website url
+This weekend we will perform crime data analysis. Download this file (Links to an external site.) to your working folder as a .js file and include into your HTML page. It will create an array with information from Seattle police reports in 2013, where each array item contains a sub-array corresponding to a crime report with the following :
+
+month number for the report
+reporting precinct
+reported crime type
+number of incidents
+Using this array and your new knowledge of loops, answer the following questions:
+
+How many total burglaries were reported in 2013?
+Which precinct had the most burglaries in 2013?
+What was the average number of burglaries per precinct?
+In which month were the fewest assaults reported?
