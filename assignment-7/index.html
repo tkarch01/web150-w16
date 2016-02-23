@@ -103,6 +103,12 @@
          $("#main").prepend("<h1>My Assignment</h1>");
          $("#main h1").after("<p>Click on the table column head to sort by that field.</p>");
          
+       /* 
+        *Fill out the rest of the table in the #table div
+        */
+        fillTable();
+
+         
          /*
           *Put a header of text for the side bar
           *explaining what the buttons are about.
@@ -114,14 +120,6 @@
           */
           $("#sidebar").addClass("left");
          
-         /*
-          *setup reset button
-          */    
-          $("#reset").click(function(){
-                fillTable();
-                $(this).selected("background-color","white");
-
-            });
          //set the background color with hover
         $( "th" ).hover(
             function() {$( this ).css( {"background-color":"orange"} );},
@@ -137,7 +135,7 @@
             $("tr:gt(1)").remove("tr");
         title = title.toLowerCase();
        // $("#sidebar").append("<h1>"+title+"</h1>");
-        
+        alert("In the future, the table will reappear with sorted quality. This disappearing act is just for the benefit of showing you something has happened. Now click the reset button");
         });
         //sort by field name
 
@@ -151,9 +149,6 @@
          $("#sidebar").append("<ul></ul>");
          $("#sidebar ul").css("list-style", "none").css("margin", "0").css("padding-left", "5");
 
-       // buttons
-
-            
         $("#sidebar ul").append('<li><p>Role:</p></li>');
         var roles = [];
         for (row in characters) {
@@ -203,16 +198,9 @@
          
          
         /*
-         *bottom div
-         *put buttons in the bottom - click to do some 
-         *css and utilities stuff
+         *put buttons in the side bar - click to sort out all but this button content 
+         *
          */
-                  
-         for (row in characters) {
-            $("table").append("<tr><td>" +characters[row].name+ "</td><td>" +characters[row].role+ "</td><td>" +characters[row].house+ "</td><td>" +characters[row].gender+ "</td><td>" +characters[row].alignment+ "</td></tr>");
-        }
-        $("tr:odd").addClass("odd_row");
-        $(".odd_row").css("background-color","lightgray");
 
         $(document).ready(function(){
             var buttons = $('button');
@@ -237,11 +225,25 @@
             toggleRows($this.text());
             });
         });
+        
+        /*
+         *setup reset button using the button id #reset
+         */    
+          $("#reset").click(function(){
+                fillTable();
+                $(this).selected("background-color","white");
+
+            });
+            
+        /*
+         *common functions
+         */
+
         function toggleRows(text) {
             var tableRow =""
              $("tr:gt(1)").remove("tr");
             for (row in characters) {
-                tableRow= "<tr><td>" +characters[row].name+ "</td><td>" +characters[row].role+ "</td><td>" +characters[row].house+ "</td><td>" +characters[row].gender+ "</td><td>" +characters[row].alignment+ "</td></tr>";
+                tableRow= "<tr><td class = 'CharName'>" +characters[row].name+ "</td><td class = 'role'>" +characters[row].role+ "</td><td class = 'house'>" +characters[row].house+ "</td><td class = 'gender'>" +characters[row].gender+ "</td><td class = 'alignment'>" +characters[row].alignment+ "</td></tr>";
                 if (tableRow.includes(text)){
                 $("table").append(tableRow);
                 }
@@ -255,7 +257,7 @@
         function fillTable(){
              $("tr:gt(1)").remove("tr");
              for (row in characters) {
-                $("table").append("<tr><td>" +characters[row].name+ "</td><td>" +characters[row].role+ "</td><td>" +characters[row].house+ "</td><td>" +characters[row].gender+ "</td><td>" +characters[row].alignment+ "</td></tr>");
+                $("table").append("<tr><td class = 'CharName'>" +characters[row].name+ "</td><td class = 'role'>" +characters[row].role+ "</td><td class = 'house'>" +characters[row].house+ "</td><td class = 'gender'>" +characters[row].gender+ "</td><td class = 'alignment'>" +characters[row].alignment+ "</td></tr>");
                 }
             $("tr:odd").addClass("odd_row");
             $(".odd_row").css("background-color","lightgray");
