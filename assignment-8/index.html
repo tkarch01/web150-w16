@@ -3,24 +3,29 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<Style>
 		ul {
-		list-style-type: none;
+			list-style-type: none;
+		}
+		h3 {
+			text-transform:capitalize;
 		}
 		</style>
     </head>
   
 <body>
-    
+   <h1>Get the 5 Day Weather Forecast</h1>
 <form id="formName">
-    City Name: <input type = "text" name = "q" />
-    <br /><button>Get Weather Forcast</button>
+   City Name: <input type = "text" name = "q" />
+   <button>Get Weather Forcast</button>
+	<p>Please use only USA cities. You may enter a state also.</p>
+
 </form>    
-    <h1 id="status"></h1>
+  <h1 id="status"></h1>
   <div id="forcast"></div>
 <script>
 //when you click the submit button...
 $('form button, form input[type=submit]').on('click', function(e) {
-    //clear the div of previous data
-      $("#forcast").html("");
+	//clear data from previous button push
+	$("#forcast").html("");
   //cancel the normal form behavior
   e.preventDefault();
 
@@ -31,12 +36,12 @@ $('form button, form input[type=submit]').on('click', function(e) {
     }else if($.isNumeric(txt.charAt(0))){ // first char of textbox is number
     alert("City name must be string and not a number.");
     }else{ // string entered
-  
-      
+    
       var form = $(this).closest('form');
       var formData = form.serialize();
 
-     
+  
+
         console.log(formData);
 
         $.getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + formData + ",us&mode=json&appid=10af812625c45c129aa8cd9a2eccd89a", function(result, status) {
@@ -44,12 +49,12 @@ $('form button, form input[type=submit]').on('click', function(e) {
                 console.log(result);
                  
                 $("#status").html("5 Day Weather Forecast for " + result["city"]["name"]);
-                
+            
                 //use data pooint at noon
                 for (i = 3; i <= 35; i += 8)  {            
-                    $("#forcast").append('<div class="day"><h4>' + new Date(result["list"][i]["dt_txt"]) + "</h4>"
+                    $("#forcast").append('<div class="day"><h2>' + new Date(result["list"][i]["dt_txt"]) + "</h2>"
                     + '<ul>'    
-                    + '<li class="uppercase"><img src="http://openweathermap.org/img/w/' + result["list"][i]["weather"][0]["icon"] + '.png">'+ result["list"][i]["weather"][0]["description"] + "</li>" 
+                    + '<li><h3><img src="http://openweathermap.org/img/w/' + result["list"][i]["weather"][0]["icon"] + '.png">'+ result["list"][i]["weather"][0]["description"] + "</h3></li>" 
                     + "<li>Minimum Temp: " + kelvinToF(result["list"][i]["main"]["temp_min"]) + " F</li>"
                     + "<li>Maximum Temp: " + kelvinToF(result["list"][i]["main"]["temp_max"]) + " F</li>"
                     + "<li>Humidity: " + result["list"][i]["main"]["humidity"] + "</li></div>"
