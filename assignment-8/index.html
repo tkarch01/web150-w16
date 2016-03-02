@@ -19,6 +19,8 @@
 <script>
 //when you click the submit button...
 $('form button, form input[type=submit]').on('click', function(e) {
+    //clear the div of previous data
+      $("#forcast").html("");
   //cancel the normal form behavior
   e.preventDefault();
 
