@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    </head>
+  
+<body>
+    
+<form id="formName">
+    Search Topic: <input type = "text" name = "q" />
+    <button>Search</button>
+</form>    
+    
+  <ul></ul>
+<script>
+ 
+//when you click the submit button...
+$('form button, form input[type=submit]').on('click', function(e) {
+  //cancel the normal form behavior
+  e.preventDefault();
+
+  //gather up the form's values
+  var form = $(this).closest('form');
+  var formData = form.serialize();
+
+  //send the request
+    console.log(formData);
+
+
+$.getJSON("https://www.googleapis.com/youtube/v3/search?" + formData + "&key=AIzaSyA6FmEJTWHkpjbe1iBAvy2InH1xPwdkZmc&part=snippet&type=video", function(result, status) {
+        if (status == "success") {
+            console.log(result);
+            $.each(result.items, function(i, item){
+                $("ul").append("<li><a href='https://www.youtube.com/watch?v=" + item.id.videoId + "' target = '_blank'><img src='" + item.snippet.thumbnails.default.url + "' /></a>");
+            });
+        }else{
+            $("#status").html("Error");
+        }
+            
+    });
+
+});
+</script>
+
+</body>
+</html>

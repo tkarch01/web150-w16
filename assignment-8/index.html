@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<Style>
+		ul {
+		list-style-type: none;
+		}
+		</style>
+    </head>
+  
+<body>
+    
+<form id="formName">
+    City Name: <input type = "text" name = "q" />
+    <br /><button>Get Weather Forcast</button>
+</form>    
+    <h1 id="status"></h1>
+  <div id="forcast"></div>
+<script>
+//when you click the submit button...
+$('form button, form input[type=submit]').on('click', function(e) {
+  //cancel the normal form behavior
+  e.preventDefault();
+
+  //check to see if the input has content and is not numeric
+  var txt=$('input:text[name=q]').val();
+    if (txt.length < 1){ // "" entered in textbox
+    alert("You must supply a city name.");
+    }else if($.isNumeric(txt.charAt(0))){ // first char of textbox is number
+    alert("City name must be string and not a number.");
+    }else{ // string entered
+  
+      
+      var form = $(this).closest('form');
+      var formData = form.serialize();
+
+     
+        console.log(formData);
+
+        $.getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + formData + ",us&mode=json&appid=10af812625c45c129aa8cd9a2eccd89a", function(result, status) {
+            if (status == "success") {
+                console.log(result);
+                 
+                $("#status").html("5 Day Weather Forecast for " + result["city"]["name"]);
+                
+                //use data pooint at noon
+                for (i = 3; i <= 35; i += 8)  {            
+                    $("#forcast").append('<div class="day"><h4>' + new Date(result["list"][i]["dt_txt"]) + "</h4>"
+                    + '<ul>'    
+                    + '<li class="uppercase"><img src="http://openweathermap.org/img/w/' + result["list"][i]["weather"][0]["icon"] + '.png">'+ result["list"][i]["weather"][0]["description"] + "</li>" 
+                    + "<li>Minimum Temp: " + kelvinToF(result["list"][i]["main"]["temp_min"]) + " F</li>"
+                    + "<li>Maximum Temp: " + kelvinToF(result["list"][i]["main"]["temp_max"]) + " F</li>"
+                    + "<li>Humidity: " + result["list"][i]["main"]["humidity"] + "</li></div>"
+                 )}; 
+            }else{
+                $("#status").html("I'm sorry but we do not have anything to show you right now.");
+            }
+          
+        });
+    } //if (txt.length >0)
+	//kelvin to fahrenheit conversion
+    function kelvinToF(value) {
+        var fahrenheit = (((Number(value) - 273.15)*9)/5) + 32;
+        return fahrenheit.toFixed(2);
+    }
+ 
+});   
+   
+</script>
+
+</body>
+</html>
