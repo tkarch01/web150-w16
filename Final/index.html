@@ -1,0 +1,27 @@
+<html>
+    <head>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    </head>
+<body><div>
+<form action="/index.php">
+       <label>Phone</label>
+       <input pattern="[^a-zA-Z]+" name="phone" 
+           data-error="Please enter only numbers and punctuation">
+       <span class="error"></span>
+       <input type="submit">
+   </form>
+<p id="demo"> hello</p>
+</div>
+<script>
+
+function myFunction() {
+    var str = document.getElementById("phone").value; 
+    var txt = str.replace(/123/i,"r");
+    document.getElementById("demo").innerHTML = txt;
+}
+((\d{3}))-(\d{3})-(\d{4}) (x(\d*))?
+
+</script>
+</body>
+</html>

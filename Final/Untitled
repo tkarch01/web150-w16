@@ -1,0 +1,17 @@
+<html>
+    <head>
+    </head>
+<body>
+<form>
+<input type="tel" name="phone" />
+<button>submit</button>
+</form>
+<script>
+
+
+var telName = document.getElementsByName("phone");
+document.write(telName);
+
+</script>
+</body>
+</html>
