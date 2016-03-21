@@ -60,15 +60,14 @@
             var cntJavaScript = profile.split(/\b\javascript\b/g).length-1;
             var cntJquery = profile.split(/\b\jquery\b/g).length-1;
             var cntJs = profile.split(/\b\js\b/g).length-1;
-            document.getElementById("message").innerHTML="javascript was found "+ cntJavaScript + " times, \n" +
+            var msg = "javascript was found "+ cntJavaScript + " times, \n" +
                     "jquery was found " + cntJquery + " times, \n" +
                     "js was found " + cntJs + " times  \n" +
                     "in the Profile text box.";
-
-            /* normally would use return true; but that refreshes the page so I have
-             * return false so that the page does not refesh and you can see the message
+            alert(msg);
+            /* For some reason the alert box does not work. 
              */
-            return false;
+            return true;
         } 
     }
     
