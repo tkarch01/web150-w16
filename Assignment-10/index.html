@@ -57,9 +57,9 @@
             return false;
         }else{ //form is OK - count from comment 4 above
             var profile = document.getElementById("profile").value;
-            var cntJavaScript = profile.split(/\b\javascript\b/g).length-1;
-            var cntJquery = profile.split(/\b\jquery\b/g).length-1;
-            var cntJs = profile.split(/\b\js\b/g).length-1;
+            var cntJavaScript = profile.split(/\b\javascript\b/gi).length-1;
+            var cntJquery = profile.split(/\b\jquery\b/gi).length-1;
+            var cntJs = profile.split(/\b\js\b/gi).length-1;
             var msg = "javascript was found "+ cntJavaScript + " times, \n" +
                     "jquery was found " + cntJquery + " times, \n" +
                     "js was found " + cntJs + " times  \n" +
